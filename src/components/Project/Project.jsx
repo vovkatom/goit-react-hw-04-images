@@ -9,7 +9,7 @@ import { AppDiv } from './Project.syled';
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-class edrtdrte extends Component {
+class Project extends Component {
   state = {
     images: [],
     isLoading: false,
@@ -21,13 +21,13 @@ class edrtdrte extends Component {
     isLastPage: false,
   };
 
-componentDidUpdate(_prevProps, prevState) { 
-  if (prevState.query !== this.state.query) {       
+  componentDidUpdate (_prevProps, prevState) {
+    if (prevState.query !== this.state.query) {
       this.setState({ images: [], page: 1, isLastPage: false }, () => {
-  this.fetchImages();
-});
-    }  
-}
+        this.fetchImages();
+      });
+    }
+  }
 
   fetchImages = () => {
     const { query, page } = this.state;
@@ -42,21 +42,27 @@ componentDidUpdate(_prevProps, prevState) {
       .then(response => {
         const { hits, totalHits } = response.data;
 
-        if (hits.length === 0) { 
-        return toast('Sorry, there are no images matching your request...', {position: toast.POSITION.TOP_CENTER, icon: "🤔"});
+        if (hits.length === 0) {
+          return toast('Sorry, there are no images matching your request...', {
+            position: toast.POSITION.TOP_CENTER,
+            icon: '🤔',
+          });
         }
 
-        const modifiedHits = hits.map(({ id, tags, webformatURL, largeImageURL }) => ({
-      id,
-      tags,
-      webformatURL,
-      largeImageURL
-    }));
+        const modifiedHits = hits.map(
+          ({ id, tags, webformatURL, largeImageURL }) => ({
+            id,
+            tags,
+            webformatURL,
+            largeImageURL,
+          })
+        );
 
         this.setState(prevState => ({
           images: [...prevState.images, ...modifiedHits],
           page: prevState.page + 1,
-          isLastPage: prevState.images.length + modifiedHits.length >= totalHits,
+          isLastPage:
+            prevState.images.length + modifiedHits.length >= totalHits,
         }));
       })
       .catch(error => {
@@ -68,11 +74,17 @@ componentDidUpdate(_prevProps, prevState) {
   };
 
   handleSearchSubmit = query => {
-      if (this.state.query === query) {
+    if (this.state.query === query) {
       return;
     }
-  this.setState({ query: query, page: 1, images: [], error: null, isLastPage: false });
-};
+    this.setState({
+      query: query,
+      page: 1,
+      images: [],
+      error: null,
+      isLastPage: false,
+    });
+  };
 
   handleImageClick = image => {
     this.setState({ selectedImage: image, showModal: true });
@@ -84,13 +96,13 @@ componentDidUpdate(_prevProps, prevState) {
     document.body.style.overflow = 'auto';
   };
 
-  render() {
-    const { images, isLoading, error, showModal, selectedImage, isLastPage } = this.state;
+  render () {
+    const { images, isLoading, error, showModal, selectedImage, isLastPage } =
+      this.state;
 
     return (
       <AppDiv>
-        <ToastContainer transition={Flip}/>
-        <Searchbar onSubmit={this.handleSearchSubmit} />
+        <ToastContainer transition={Flip} />
         <Searchbar onSubmit={this.handleSearchSubmit} />
 
         {error && <p>Error: {error}</p>}
@@ -98,7 +110,6 @@ componentDidUpdate(_prevProps, prevState) {
         <ImageGallery images={images} onItemClick={this.handleImageClick} />
 
         {isLoading && <Loader />}
-        
 
         {!isLoading && images.length > 0 && !isLastPage && (
           <Button onClick={this.fetchImages} />
@@ -112,4 +123,4 @@ componentDidUpdate(_prevProps, prevState) {
   }
 }
 
-export default edrtdrte;
+export default Project;
