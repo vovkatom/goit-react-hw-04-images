@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Overlay, ModalDiv } from './Modal.styled'
+import { Overlay, ModalDiv } from './Modal.styled';
 
 class Modal extends Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);    
+  componentDidMount () {
+    window.addEventListener('keydown', this.handleKeyDown);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
 
@@ -23,13 +23,13 @@ class Modal extends Component {
     }
   };
 
-  render() {
+  render () {
     const { image } = this.props;
 
     return (
       <Overlay onClick={this.handleClick}>
         <ModalDiv>
-          <img src={image.largeImageURL} alt={ image.tags } />
+          <img src={image.largeImageURL} alt={image.tags} />
         </ModalDiv>
       </Overlay>
     );

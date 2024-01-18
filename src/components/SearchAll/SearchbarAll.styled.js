@@ -19,7 +19,7 @@ export const SearchBarHead = styled.header`
   background-color: #3f51b5;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-`
+`;
 export const SearchForm = styled.form`
   display: flex;
   align-items: center;
@@ -44,9 +44,9 @@ export const SearchFormBtn = styled.button`
   cursor: pointer;
   outline: none;
   :hover {
-  opacity: 1;
-}
-`
+    opacity: 1;
+  }
+`;
 export const SearchFormButtonLabel = styled.span`
   position: absolute;
   width: 1px;
@@ -57,10 +57,10 @@ export const SearchFormButtonLabel = styled.span`
   white-space: nowrap;
   clip-path: inset(50%);
   border: 0;
-`
+`;
 export const SearchFormInput = styled.input`
   display: inline-block;
-  width: 100%;  
+  width: 100%;
   font: inherit;
   line-height: initial;
   font-size: 20px;
@@ -69,10 +69,8 @@ export const SearchFormInput = styled.input`
   padding-left: 4px;
   padding-right: 4px;
 
-
-::placeholder {
-  font: inherit;
-  font-size: 18px;
-}
-` 
-
+  ::placeholder {
+    font: inherit;
+    font-size: 18px;
+  }
+`;

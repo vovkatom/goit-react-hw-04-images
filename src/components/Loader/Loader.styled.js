@@ -1,4 +1,4 @@
-  import styled from "styled-components";
+import styled from 'styled-components';
 
 export const LoadWrapper = styled.div`
   position: fixed;
@@ -13,4 +13,4 @@ export const LoadWrapper = styled.div`
   /* display: flex;
   justify-content: center;
   align-items: center; */
-`
+`;
